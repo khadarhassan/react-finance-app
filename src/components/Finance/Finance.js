@@ -3,7 +3,7 @@ import AmountInput from './AmountInput/AmountInput';
 import AmountList from './AmountList/AmountList';
 import AmountResult from './AmountResult/AmountResult';
 
-const Amount = () => {
+const Finance = () => {
   const [incomeList, setIncomeList] = useState([
     {
       title: 'Tax refund',
@@ -74,4 +74,4 @@ const Amount = () => {
   );
 };
 
-export default Amount;
+export default Finance;
