@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import * as cn from 'classnames';
+import { FinanceStore } from '../FinanceStore';
 
-const AmountInput = ({ addInput }) => {
+const AmountInput = () => {
   const [amount, setAmount] = useState({
     title: '',
     value: '',
     type: 'income',
     exclude: false
   });
+
+  const { addInput } = useContext(FinanceStore);
 
   const addAmount = e => {
     e.preventDefault();

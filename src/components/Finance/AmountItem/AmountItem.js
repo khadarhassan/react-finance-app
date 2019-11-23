@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import * as cn from 'classnames';
+import { FinanceStore } from '../FinanceStore';
 
 import './amountItem.scss';
 
-const AmountItem = ({ amount, deleteAmount, excludeAmount }) => {
+const AmountItem = ({ amount }) => {
   const [exclude, setExclude] = useState(true);
+  const { deleteAmount, excludeAmount } = useContext(FinanceStore);
 
   const deleteItem = () => {
     deleteAmount(amount);
