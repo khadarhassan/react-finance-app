@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import * as cn from 'classnames';
 import reducer from '../../../util/reducer';
 import { FinanceStore } from '../FinanceStore';
-import AmountItem from '../AmountItem/AmountItem';
+import FinanceItem from '../FinanceItem/FinanceItem';
 
-const AmountList = () => {
+const FinanceList = () => {
   const { incomeList, expenseList } = useContext(FinanceStore);
   const renderAmountItem = (amount, index) => {
-    return <AmountItem key={index} amount={amount} />;
+    return <FinanceItem key={index} amount={amount} />;
   };
 
   const renderAmounts = (type, list, className) => {
@@ -30,4 +30,4 @@ const AmountList = () => {
   );
 };
 
-export default AmountList;
+export default FinanceList;

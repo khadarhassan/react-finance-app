@@ -13,7 +13,7 @@ const totalResult = (a, b) => {
   return a - b;
 };
 
-const AmountResult = () => {
+const FinanceResult = () => {
   const { incomeList, expenseList } = useContext(FinanceStore);
 
   return (
@@ -28,4 +28,4 @@ const AmountResult = () => {
   );
 };
 
-export default AmountResult;
+export default FinanceResult;

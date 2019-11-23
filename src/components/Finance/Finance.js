@@ -1,15 +1,15 @@
 import React from 'react';
-import AmountInput from './AmountInput/AmountInput';
-import AmountList from './AmountList/AmountList';
-import AmountResult from './AmountResult/AmountResult';
+import FinanceInput from './FinanceInput/FinanceInput';
+import FinanceList from './FinanceList/FinanceList';
+import FinanceResult from './FinanceResult/FinanceResult';
 
 const Finance = () => {
   return (
     <div className="columns is-centered">
       <div className="column is-half">
-        <AmountInput />
-        <AmountList />
-        <AmountResult />
+        <FinanceInput />
+        <FinanceList />
+        <FinanceResult />
       </div>
     </div>
   );

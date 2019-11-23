@@ -2,9 +2,9 @@ import React, { useState, useContext } from 'react';
 import * as cn from 'classnames';
 import { FinanceStore } from '../FinanceStore';
 
-import './amountItem.scss';
+import './financeItem.scss';
 
-const AmountItem = ({ amount }) => {
+const FinanceItem = ({ amount }) => {
   const [exclude, setExclude] = useState(true);
   const { deleteAmount, excludeAmount } = useContext(FinanceStore);
 
@@ -44,4 +44,4 @@ const AmountItem = ({ amount }) => {
   );
 };
 
-export default AmountItem;
+export default FinanceItem;

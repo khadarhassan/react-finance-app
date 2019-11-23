@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import * as cn from 'classnames';
 import { FinanceStore } from '../FinanceStore';
 
-const AmountInput = () => {
+const FinanceInput = () => {
   const [amount, setAmount] = useState({
     title: '',
     value: '',
@@ -104,4 +104,4 @@ const AmountInput = () => {
   );
 };
 
-export default AmountInput;
+export default FinanceInput;
