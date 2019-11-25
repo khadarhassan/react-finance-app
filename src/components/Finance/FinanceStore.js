@@ -33,7 +33,7 @@ export const FinanceProvider = ({ children }) => {
     }
   ]);
 
-  const addInput = e => {
+  const addAmount = e => {
     if (e.type === 'income') {
       setIncomeList([...incomeList, e]);
     } else {
@@ -62,7 +62,7 @@ export const FinanceProvider = ({ children }) => {
       value={{
         incomeList,
         expenseList,
-        addInput,
+        addAmount,
         deleteAmount,
         excludeAmount
       }}
