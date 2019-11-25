@@ -10,15 +10,15 @@ const FinanceInput = () => {
     exclude: false
   });
 
-  const { addInput } = useContext(FinanceStore);
+  const { addAmount } = useContext(FinanceStore);
 
-  const addAmount = e => {
+  const addInput = e => {
     e.preventDefault();
 
     const { value, title, type } = amount;
 
     if (value && title && type !== '') {
-      addInput(amount);
+      addAmount(amount);
 
       setAmount({
         ...amount,
@@ -31,7 +31,7 @@ const FinanceInput = () => {
   };
 
   return (
-    <form onSubmit={e => addAmount(e)}>
+    <form onSubmit={e => addInput(e)}>
       <div className="field has-addons">
         <div className="control has-icons-left">
           <div className={'select is-medium'}>
@@ -92,7 +92,7 @@ const FinanceInput = () => {
         </div>
         <div className="control">
           <button
-            onClick={addAmount}
+            onClick={addInput}
             className="button is-primary is-medium"
             type="submit"
           >
