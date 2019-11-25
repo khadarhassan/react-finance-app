@@ -4,13 +4,13 @@ import reducer from '../../../util/reducer';
 import { FinanceStore } from '../FinanceStore';
 
 const totalResult = (a, b) => {
-  a = a.filter(h => h.exclude !== true);
-  b = b.filter(h => h.exclude !== true);
+  let firstList = a.filter(h => h.exclude !== true);
+  let secondList = b.filter(h => h.exclude !== true);
 
-  a = a.reduce(reducer, 0);
-  b = b.reduce(reducer, 0);
+  firstList = firstList.reduce(reducer, 0);
+  secondList = secondList.reduce(reducer, 0);
 
-  return a - b;
+  return firstList - secondList;
 };
 
 const FinanceResult = () => {
