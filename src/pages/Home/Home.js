@@ -6,13 +6,13 @@ import Finance from '../../components/Finance/Finance';
 
 const Home = () => {
   return (
-    <React.Fragment>
+    <>
       <Header />
       <Hero title="Finance App" />
       <Layout>
         <Finance />
       </Layout>
-    </React.Fragment>
+    </>
   );
 };
 

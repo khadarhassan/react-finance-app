@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import * as cn from 'classnames';
+import { FinanceStore } from '../FinanceStore';
 
-const AmountInput = ({ addInput }) => {
+const FinanceInput = () => {
   const [amount, setAmount] = useState({
     title: '',
     value: '',
@@ -9,13 +10,15 @@ const AmountInput = ({ addInput }) => {
     exclude: false
   });
 
-  const addAmount = e => {
+  const { addAmount } = useContext(FinanceStore);
+
+  const addInput = e => {
     e.preventDefault();
 
     const { value, title, type } = amount;
 
     if (value && title && type !== '') {
-      addInput(amount);
+      addAmount(amount);
 
       setAmount({
         ...amount,
@@ -28,7 +31,7 @@ const AmountInput = ({ addInput }) => {
   };
 
   return (
-    <form onSubmit={e => addAmount(e)}>
+    <form onSubmit={e => addInput(e)}>
       <div className="field has-addons">
         <div className="control has-icons-left">
           <div className={'select is-medium'}>
@@ -89,7 +92,7 @@ const AmountInput = ({ addInput }) => {
         </div>
         <div className="control">
           <button
-            onClick={addAmount}
+            onClick={addInput}
             className="button is-primary is-medium"
             type="submit"
           >
@@ -101,4 +104,4 @@ const AmountInput = ({ addInput }) => {
   );
 };
 
-export default AmountInput;
+export default FinanceInput;

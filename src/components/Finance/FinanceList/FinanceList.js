@@ -1,23 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import * as cn from 'classnames';
 import reducer from '../../../util/reducer';
-import AmountItem from '../AmountItem/AmountItem';
+import { FinanceStore } from '../FinanceStore';
+import FinanceItem from '../FinanceItem/FinanceItem';
 
-const AmountList = ({
-  incomeList,
-  expenseList,
-  deleteAmount,
-  excludeAmount
-}) => {
+const FinanceList = () => {
+  const { incomeList, expenseList } = useContext(FinanceStore);
   const renderAmountItem = (amount, index) => {
-    return (
-      <AmountItem
-        key={index}
-        amount={amount}
-        deleteAmount={deleteAmount}
-        excludeAmount={excludeAmount}
-      />
-    );
+    return <FinanceItem key={index} amount={amount} />;
   };
 
   const renderAmounts = (type, list, className) => {
@@ -40,4 +30,4 @@ const AmountList = ({
   );
 };
 
-export default AmountList;
+export default FinanceList;
