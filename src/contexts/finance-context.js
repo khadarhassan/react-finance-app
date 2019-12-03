@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react';
 
-export const FinanceStore = createContext();
+export const FinanceContext = createContext();
 
 export const FinanceProvider = ({ children }) => {
   const [incomeList, setIncomeList] = useState([
@@ -58,7 +58,7 @@ export const FinanceProvider = ({ children }) => {
   };
 
   return (
-    <FinanceStore.Provider
+    <FinanceContext.Provider
       value={{
         incomeList,
         expenseList,
@@ -68,6 +68,6 @@ export const FinanceProvider = ({ children }) => {
       }}
     >
       {children}
-    </FinanceStore.Provider>
+    </FinanceContext.Provider>
   );
 };

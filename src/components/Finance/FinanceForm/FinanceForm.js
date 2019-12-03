@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import * as cn from 'classnames';
-import { FinanceStore } from '../FinanceStore';
+import { FinanceContext } from '../../../contexts/finance-context';
 
-const FinanceInput = () => {
+const FinanceForm = () => {
   const [amount, setAmount] = useState({
     title: '',
     value: '',
@@ -10,7 +10,7 @@ const FinanceInput = () => {
     exclude: false
   });
 
-  const { addAmount } = useContext(FinanceStore);
+  const { addAmount } = useContext(FinanceContext);
 
   const addInput = e => {
     e.preventDefault();
@@ -104,4 +104,4 @@ const FinanceInput = () => {
   );
 };
 
-export default FinanceInput;
+export default FinanceForm;

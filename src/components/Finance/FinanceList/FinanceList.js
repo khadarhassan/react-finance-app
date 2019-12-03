@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import * as cn from 'classnames';
 import reducer from '../../../util/reducer';
-import { FinanceStore } from '../FinanceStore';
+import { FinanceContext } from '../../../contexts/finance-context';
 import FinanceItem from '../FinanceItem/FinanceItem';
 
 const FinanceList = () => {
-  const { incomeList, expenseList } = useContext(FinanceStore);
+  const { incomeList, expenseList } = useContext(FinanceContext);
   const renderAmountItem = (amount, index) => {
     return <FinanceItem key={index} amount={amount} />;
   };

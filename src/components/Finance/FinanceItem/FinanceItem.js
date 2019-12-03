@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react';
 import * as cn from 'classnames';
-import { FinanceStore } from '../FinanceStore';
+import { FinanceContext } from '../../../contexts/finance-context';
 
 import './financeItem.scss';
 
 const FinanceItem = ({ amount }) => {
   const [exclude, setExclude] = useState(true);
-  const { deleteAmount, excludeAmount } = useContext(FinanceStore);
+  const { deleteAmount, excludeAmount } = useContext(FinanceContext);
 
   const deleteItem = () => {
     deleteAmount(amount);

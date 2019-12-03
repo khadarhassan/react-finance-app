@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import * as cn from 'classnames';
 import reducer from '../../../util/reducer';
-import { FinanceStore } from '../FinanceStore';
+import { FinanceContext } from '../../../contexts/finance-context';
 
 const totalResult = (a, b) => {
   let firstList = a.filter(h => h.exclude !== true);
@@ -14,7 +14,7 @@ const totalResult = (a, b) => {
 };
 
 const FinanceResult = () => {
-  const { incomeList, expenseList } = useContext(FinanceStore);
+  const { incomeList, expenseList } = useContext(FinanceContext);
 
   return (
     <p

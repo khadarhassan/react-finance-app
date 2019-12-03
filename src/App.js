@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './app.scss';
 import Home from './pages/Home/Home';
 import Dashboard from './pages/Dashboard/Dashboard';
-import { FinanceProvider } from './components/Finance/FinanceStore';
+import { FinanceProvider } from './contexts/finance-context';
 
 const App = () => {
   return (

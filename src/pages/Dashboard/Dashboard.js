@@ -3,11 +3,11 @@ import Header from '../../components/Header/Header';
 import Hero from '../../components/Hero/Hero';
 import Layout from '../../components/Layout/Layout';
 import Chart from '../../components/Chart/Chart';
-import { FinanceStore } from '../../components/Finance/FinanceStore';
+import { FinanceContext } from '../../contexts/finance-context';
 import reducer from '../../util/reducer';
 
 const Dashboard = () => {
-  const { incomeList, expenseList } = useContext(FinanceStore);
+  const { incomeList, expenseList } = useContext(FinanceContext);
 
   const totalIncomes = incomeList.reduce(reducer, 0);
   const totalExpenses = expenseList.reduce(reducer, 0);
