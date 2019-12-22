@@ -2,36 +2,40 @@ import React, { useState, createContext } from 'react';
 
 export const FinanceContext = createContext();
 
-export const FinanceProvider = ({ children }) => {
-  const [incomeList, setIncomeList] = useState([
-    {
-      title: 'Tax refund',
-      type: 'income',
-      value: 2000,
-      exclude: false
-    },
-    {
-      title: 'Side project',
-      type: 'income',
-      value: 3000,
-      exclude: false
-    }
-  ]);
+const income = [
+  {
+    title: 'Tax refund',
+    type: 'income',
+    value: 2000,
+    exclude: false
+  },
+  {
+    title: 'Side project',
+    type: 'income',
+    value: 3000,
+    exclude: false
+  }
+];
 
-  const [expenseList, setExpenseList] = useState([
-    {
-      title: 'Domains',
-      type: 'expense',
-      value: 435,
-      exclude: false
-    },
-    {
-      title: 'Hosting',
-      type: 'expense',
-      value: 155,
-      exclude: false
-    }
-  ]);
+const expense = [
+  {
+    title: 'Domains',
+    type: 'expense',
+    value: 435,
+    exclude: false
+  },
+  {
+    title: 'Hosting',
+    type: 'expense',
+    value: 155,
+    exclude: false
+  }
+];
+
+export const FinanceProvider = ({ children }) => {
+  const [incomeList, setIncomeList] = useState(income);
+
+  const [expenseList, setExpenseList] = useState(expense);
 
   const addAmount = e => {
     if (e.type === 'income') {
