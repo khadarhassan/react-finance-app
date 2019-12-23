@@ -1,43 +1,27 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
+import axios from 'axios';
 
 export const FinanceContext = createContext();
 
-const income = [
-  {
-    title: 'Tax refund',
-    type: 'income',
-    value: 2000,
-    exclude: false
-  },
-  {
-    title: 'Side project',
-    type: 'income',
-    value: 3000,
-    exclude: false
-  }
-];
-
-const expense = [
-  {
-    title: 'Domains',
-    type: 'expense',
-    value: 435,
-    exclude: false
-  },
-  {
-    title: 'Hosting',
-    type: 'expense',
-    value: 155,
-    exclude: false
-  }
-];
-
 export const FinanceProvider = ({ children }) => {
-  const [incomeList, setIncomeList] = useState(income);
+  const [incomeList, setIncomeList] = useState([]);
+  const [expenseList, setExpenseList] = useState([]);
+  const url = 'http://localhost:4000';
 
-  const [expenseList, setExpenseList] = useState(expense);
+  useEffect(() => {
+    getFinances();
+  }, []);
+
+  const getFinances = () => {
+    axios.get(url).then(res => {
+      setIncomeList(res.data.filter(income => income.type === 'income'));
+      setExpenseList(res.data.filter(expense => expense.type === 'expense'));
+    });
+  };
 
   const addAmount = e => {
+    axios.post(`${url}/add`, e);
+
     if (e.type === 'income') {
       setIncomeList([...incomeList, e]);
     } else {
@@ -46,6 +30,8 @@ export const FinanceProvider = ({ children }) => {
   };
 
   const deleteAmount = e => {
+    axios.delete(`${url}/${e._id}`);
+
     if (e.type === 'income') {
       setIncomeList(incomeList.filter(h => h !== e));
     } else {
@@ -54,6 +40,10 @@ export const FinanceProvider = ({ children }) => {
   };
 
   const excludeAmount = e => {
+    console.log(e);
+
+    axios.put(`${url}/update/${e._id}`, e);
+
     if (e.type === 'income') {
       setIncomeList(incomeList.map(item => (item === e ? (item = e) : item)));
     } else {
