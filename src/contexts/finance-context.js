@@ -40,8 +40,6 @@ export const FinanceProvider = ({ children }) => {
   };
 
   const excludeAmount = e => {
-    console.log(e);
-
     axios.put(`${url}/update/${e._id}`, e);
 
     if (e.type === 'income') {

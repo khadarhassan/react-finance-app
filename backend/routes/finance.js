@@ -8,10 +8,7 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
-  const title = req.body.title;
-  const type = req.body.type;
-  const value = req.body.value;
-  const exclude = req.body.exclude;
+  const { title, type, value, exclude } = req.body;
 
   const newFinace = new Finance({
     title,
