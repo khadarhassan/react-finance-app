@@ -6,7 +6,7 @@ export const FinanceContext = createContext();
 export const FinanceProvider = ({ children }) => {
   const [incomeList, setIncomeList] = useState([]);
   const [expenseList, setExpenseList] = useState([]);
-  const url = 'http://localhost:4000';
+  const url = 'http://localhost:4000/api';
 
   useEffect(() => {
     getFinances();
@@ -20,13 +20,13 @@ export const FinanceProvider = ({ children }) => {
   };
 
   const addAmount = e => {
-    axios.post(`${url}/add`, e);
-
-    if (e.type === 'income') {
-      setIncomeList([...incomeList, e]);
-    } else {
-      setExpenseList([...expenseList, e]);
-    }
+    axios.post(`${url}/add`, e).then(res => {
+      if (res.data.type === 'income') {
+        setIncomeList([...incomeList, res.data]);
+      } else {
+        setExpenseList([...expenseList, res.data]);
+      }
+    });
   };
 
   const deleteAmount = e => {
