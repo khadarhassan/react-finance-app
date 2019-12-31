@@ -10,8 +10,8 @@ finance.get('/', getFinances);
 
 finance.post('/', createFinance);
 
-finance.delete('/:id', deleteFinance);
+finance.delete('/:financeId', deleteFinance);
 
-finance.patch('/:id', updateFinance);
+finance.patch('/:financeId', updateFinance);
 
 module.exports = finance;
