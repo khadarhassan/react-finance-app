@@ -6,7 +6,8 @@ export const FinanceContext = createContext();
 export const FinanceProvider = ({ children }) => {
   const [incomeList, setIncomeList] = useState([]);
   const [expenseList, setExpenseList] = useState([]);
-  const url = 'http://localhost:4000/api';
+  const url =
+    'http://localhost:4000/api/users/5e04fb153efdc5a3c5f902f8/finances/';
 
   useEffect(() => {
     getFinances();
@@ -20,7 +21,7 @@ export const FinanceProvider = ({ children }) => {
   };
 
   const addAmount = e => {
-    axios.post(`${url}/add`, e).then(res => {
+    axios.post(url, e).then(res => {
       if (res.data.type === 'income') {
         setIncomeList([...incomeList, res.data]);
       } else {
@@ -30,23 +31,25 @@ export const FinanceProvider = ({ children }) => {
   };
 
   const deleteAmount = e => {
-    axios.delete(`${url}/${e._id}`);
-
-    if (e.type === 'income') {
-      setIncomeList(incomeList.filter(h => h !== e));
-    } else {
-      setExpenseList(expenseList.filter(h => h !== e));
-    }
+    axios.delete(`${url}/${e._id}`, e).then(res => {
+      if (e.type === 'income') {
+        setIncomeList(incomeList.filter(h => h !== e));
+      } else {
+        setExpenseList(expenseList.filter(h => h !== e));
+      }
+    });
   };
 
   const excludeAmount = e => {
-    axios.put(`${url}/update/${e._id}`, e);
-
-    if (e.type === 'income') {
-      setIncomeList(incomeList.map(item => (item === e ? (item = e) : item)));
-    } else {
-      setExpenseList(expenseList.map(item => (item === e ? (item = e) : item)));
-    }
+    axios.patch(`${url}/${e._id}`, e).then(res => {
+      if (res.data.type === 'income') {
+        setIncomeList(incomeList.map(item => (item === e ? (item = e) : item)));
+      } else {
+        setExpenseList(
+          expenseList.map(item => (item === e ? (item = e) : item))
+        );
+      }
+    });
   };
 
   return (
