@@ -1,11 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import * as cn from 'classnames';
 import { FinanceContext } from '../../../contexts/finance-context';
 
 import './financeItem.scss';
 
 const FinanceItem = ({ amount }) => {
-  const [exclude, setExclude] = useState(true);
   const { deleteAmount, excludeAmount } = useContext(FinanceContext);
 
   const deleteItem = () => {
@@ -13,7 +12,7 @@ const FinanceItem = ({ amount }) => {
   };
 
   const excludeItem = () => {
-    setExclude(!exclude);
+    amount.exclude = !amount.exclude;
     excludeAmount(amount);
   };
 
@@ -22,7 +21,7 @@ const FinanceItem = ({ amount }) => {
       className={cn('block is-large has-text-white', {
         'has-background-success': amount.type === 'income',
         'has-background-danger': amount.type === 'expense',
-        'has-background-grey-lighter': amount.exclude === true
+        'has-background-grey-lighter': amount.exclude
       })}
     >
       <p>
@@ -30,10 +29,7 @@ const FinanceItem = ({ amount }) => {
       </p>
 
       <div className="tags has-addons">
-        <span
-          className="tag is-white"
-          onClick={() => excludeItem((amount.exclude = exclude))}
-        >
+        <span className="tag is-white" onClick={() => excludeItem()}>
           Exclude
         </span>
         <span className="tag is-danger" onClick={() => deleteItem(amount)}>
