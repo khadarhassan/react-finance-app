@@ -36,7 +36,7 @@ const createUser = (req, res) => {
 };
 
 const findUserById = (req, res) => {
-  User.findById({ _id: req.params.id })
+  User.findById({ _id: req.params.userId })
     .then(user => res.json({ user: user }))
     .catch(err => res.status(400).json('Error: ' + err));
 };
