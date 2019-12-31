@@ -11,7 +11,7 @@ const Nav = () => {
       aria-label="main navigation"
     >
       <div className="navbar-brand">
-        <a className="navbar-item" href="https://bulma.io">
+        <a className="navbar-item" href="/">
           <img src={logo} width="112" alt="" height="28" />
         </a>
         <button
@@ -45,6 +45,28 @@ const Nav = () => {
           >
             Dasboard
           </NavLink>
+        </div>
+        <div className="navbar-end">
+          <div className="navbar-item">
+            <div className="buttons">
+              <NavLink
+                exact
+                to="/signup"
+                activeClassName="is-active"
+                className="button is-primary"
+              >
+                <strong>Sign up</strong>
+              </NavLink>
+              <NavLink
+                exact
+                to="/login"
+                activeClassName="is-active"
+                className="button is-light"
+              >
+                <strong>Login</strong>
+              </NavLink>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
