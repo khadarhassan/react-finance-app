@@ -4,15 +4,12 @@ const { findUserById, createUser } = require('../controllers/users.controller');
 
 user.post('/', createUser);
 
-/* user.get('/:id', (req, res, next) => {
-  let id = req.params.id;
-  next();
-}); */
+user.get('/:userId', findUserById);
 
 user.use(
-  '/:id/finances/',
+  '/:userId/finances/',
   (req, res, next) => {
-    req.id = req.params.id;
+    req.userId = req.params.userId;
     next();
   },
   financeRouter
