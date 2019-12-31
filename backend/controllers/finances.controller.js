@@ -1,50 +1,54 @@
 let Finance = require('../models/finances.model');
 const User = require('../models/users.model');
 
-const getFinances = (req, res, next) => {
-  res.send({ message: req.id });
+const getFinances = (req, res) => {
+  User.findById({ _id: req.userId })
+    .then(user => {
+      res.json(user.finances);
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
 };
 
 const createFinance = (req, res) => {
   const { title, type, value, exclude } = req.body;
 
-  const newFinace = new Finance({
+  const newFinace = {
     title,
     type,
     value,
     exclude
-  });
+  };
 
-  res.json({ finance: newFinace });
-
-  /* User.findOne({ _id: req.id })
+  User.findByIdAndUpdate({ _id: req.userId })
     .then(user => {
       user.finances.push(newFinace);
-      res.json({ user: user });
+      res.json(newFinace);
+      user.save();
     })
-    .catch(err => res.status(400).json('Error: ' + err)); */
-
-  /* newFinace
-    .save()
-    .then(() => res.json(newFinace))
-    .catch(err => res.status(400).json('Error: ' + err)); */
+    .catch(err => res.status(400).json('Error: ' + err));
 };
 
 const updateFinance = (req, res) => {
-  Finance.findById({ _id: req.params.id })
-    .then(finance => {
-      finance.exclude = req.body.exclude;
-      finance
-        .save()
-        .then(() => res.json('Finance updated!'))
-        .catch(err => res.status(400).json('Error: ' + err));
+  User.findByIdAndUpdate({ _id: req.userId })
+    .then(user => {
+      user.finances.forEach(element => {
+        if (element.id === req.params.financeId) {
+          element.exclude = req.body.exclude;
+        }
+      });
+      res.json(user.finances);
+      user.save();
     })
     .catch(err => res.status(400).json('Error: ' + err));
 };
 
 const deleteFinance = (req, res) => {
-  Finance.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Finance deleted.'))
+  User.findByIdAndUpdate({ _id: req.userId })
+    .then(user => {
+      user.finances.id(req.params.financeId).remove();
+      res.json(user.finances);
+      user.save();
+    })
     .catch(err => res.status(400).json('Error: ' + err));
 };
 
